@@ -18,7 +18,7 @@
       </v-btn>
     </v-list-item>
 
-    <v-divider v-if="!mini"></v-divider></v-divider>
+    <v-divider v-if="!mini"></v-divider>
 
     <v-list>
       <v-list-item

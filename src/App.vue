@@ -1,6 +1,6 @@
 <template>
   <v-app>
-    <Header/>
+    <Header />
     <Drawer />
 
     <v-main>
@@ -11,7 +11,7 @@
 
 <script>
 import Drawer from "./components/Drawer.vue";
-import Header from './components/Header.vue';
+import Header from "./components/Header.vue";
 
 export default {
   name: "App",
