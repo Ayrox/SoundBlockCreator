@@ -35,27 +35,6 @@
           <v-list-item-title>{{ item.title }}</v-list-item-title>
         </v-list-item-content>
       </v-list-item>
-
-      <v-list-item
-        link
-        style="position: static; bottom: 0"
-        @click="toggleTheme()"
-      >
-        <v-list-item-icon v-if="$vuetify.theme.dark">
-          <v-icon>mdi-lightbulb-off</v-icon>
-        </v-list-item-icon>
-        <v-list-item-icon v-if="!$vuetify.theme.dark">
-          <v-icon>mdi-lightbulb-on </v-icon>
-        </v-list-item-icon>
-        <v-list-item-content>
-          <v-list-item-title v-if="!$vuetify.theme.dark">
-            Switch to Dark mode
-          </v-list-item-title>
-          <v-list-item-title v-if="$vuetify.theme.dark">
-            Switch to Light mode
-          </v-list-item-title>
-        </v-list-item-content>
-      </v-list-item>
     </v-list>
   </v-navigation-drawer>
 </template>

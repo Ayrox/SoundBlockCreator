@@ -7,6 +7,7 @@
 
 <script>
 import ThemeSwitch from "./ThemeSwitch.vue";
+
 export default {
   components: {
     ThemeSwitch,

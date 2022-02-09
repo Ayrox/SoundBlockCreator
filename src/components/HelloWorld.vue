@@ -18,6 +18,29 @@
         <p class="subheading font-weight-regular">
           Create your own sound pack for Minecraft
         </p>
+        <v-btn class="mx-5" color="secondary" rounded>
+          Create your own pack
+        </v-btn>
+        <v-btn
+          class="mx-5"
+          color="secondary"
+          rounded
+          :loading="isSelecting"
+          @click="handleFileImport"
+        >
+          Import your pack
+        </v-btn>
+
+        <input
+          ref="uploader"
+          class="d-none"
+          type="file"
+          @change="onFileChanged"
+        />
+
+        <v-btn class="mx-5" color="secondary" rounded>
+          Open a project file
+        </v-btn>
       </v-col>
     </v-row>
   </v-container>
@@ -27,57 +50,33 @@
 export default {
   name: "HelloWorld",
 
-  data: () => ({
-    ecosystem: [
-      {
-        text: "vuetify-loader",
-        href: "https://github.com/vuetifyjs/vuetify-loader",
-      },
-      {
-        text: "github",
-        href: "https://github.com/vuetifyjs/vuetify",
-      },
-      {
-        text: "awesome-vuetify",
-        href: "https://github.com/vuetifyjs/awesome-vuetify",
-      },
-    ],
-    importantLinks: [
-      {
-        text: "Documentation",
-        href: "https://vuetifyjs.com",
-      },
-      {
-        text: "Chat",
-        href: "https://community.vuetifyjs.com",
-      },
-      {
-        text: "Made with Vuetify",
-        href: "https://madewithvuejs.com/vuetify",
-      },
-      {
-        text: "Twitter",
-        href: "https://twitter.com/vuetifyjs",
-      },
-      {
-        text: "Articles",
-        href: "https://medium.com/vuetify",
-      },
-    ],
-    whatsNext: [
-      {
-        text: "Explore components",
-        href: "https://vuetifyjs.com/components/api-explorer",
-      },
-      {
-        text: "Select a layout",
-        href: "https://vuetifyjs.com/getting-started/pre-made-layouts",
-      },
-      {
-        text: "Frequently Asked Questions",
-        href: "https://vuetifyjs.com/getting-started/frequently-asked-questions",
-      },
-    ],
-  }),
+  data: () => {
+    return {
+      isSelecting: false,
+      selectedFile: null,
+    };
+  },
+  methods: {
+    handleFileImport() {
+      this.isSelecting = true;
+
+      // After obtaining the focus when closing the FilePicker, return the button state to normal
+      window.addEventListener(
+        "focus",
+        () => {
+          this.isSelecting = false;
+        },
+        { once: true }
+      );
+
+      // Trigger click on the FileInput
+      this.$refs.uploader.click();
+    },
+    onFileChanged(e) {
+      this.selectedFile = e.target.files[0];
+
+      // Do whatever you need with the file, liek reading it with FileReader
+    },
+  },
 };
 </script>
