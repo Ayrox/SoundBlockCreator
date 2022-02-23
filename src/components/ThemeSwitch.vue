@@ -11,14 +11,14 @@
 export default {
   data: () => {
     return {
-      dark: localStorage.getItem("dark_theme") == "true",
+      dark: localStorage.getItem('dark_theme') == 'true',
     };
   },
 
   methods: {
     toggleTheme() {
       this.$vuetify.theme.dark = !this.$vuetify.theme.dark;
-      localStorage.setItem("dark_theme", this.$vuetify.theme.dark.toString());
+      localStorage.setItem('dark_theme', this.$vuetify.theme.dark.toString());
       this.dark = this.$vuetify.theme.dark;
     },
   },
