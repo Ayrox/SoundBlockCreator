@@ -1,32 +1,32 @@
-import Vue from 'vue';
-import VueRouter from 'vue-router';
+import Vue from "vue";
+import VueRouter from "vue-router";
 
-import Home from '../views/Home.vue';
-import About from '../views/About.vue';
-import Creator from '../views/Creator.vue';
+import Home from "../views/Home.vue";
+import About from "../views/About.vue";
+import Creator from "../views/Creator.vue";
 
 Vue.use(VueRouter);
 
 const routes = [
   {
-    path: '/',
-    name: 'Home',
+    path: "/",
+    name: "Home",
     component: Home,
   },
   {
-    path: '/about',
-    name: 'About',
+    path: "/about",
+    name: "About",
     component: About,
   },
   {
-    path: '/creator',
-    name: 'Creator',
+    path: "/creator",
+    name: "Creator",
     component: Creator,
   },
 ];
 
 const router = new VueRouter({
-  mode: 'history',
+  mode: "history",
   base: process.env.BASE_URL,
   routes,
 });

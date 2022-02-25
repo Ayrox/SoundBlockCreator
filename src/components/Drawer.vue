@@ -44,9 +44,9 @@ export default {
   data: () => {
     return {
       items: [
-        { title: 'Dashboard', icon: 'mdi-view-dashboard', href: '/' },
-        { title: 'Creator', icon: 'mdi-briefcase', href: '/creator' },
-        { title: 'About', icon: 'mdi-help-box', href: '/about' },
+        { title: "Dashboard", icon: "mdi-view-dashboard", href: "/" },
+        { title: "Creator", icon: "mdi-briefcase", href: "/creator" },
+        { title: "About", icon: "mdi-help-box", href: "/about" },
       ],
       drawer: true,
       mini: true,

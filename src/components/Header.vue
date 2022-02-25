@@ -6,7 +6,7 @@
 </template>
 
 <script>
-import ThemeSwitch from './ThemeSwitch.vue';
+import ThemeSwitch from "./ThemeSwitch.vue";
 
 export default {
   components: {
@@ -15,7 +15,7 @@ export default {
   methods: {
     toggle_dark_mode: function () {
       this.$vuetify.theme.dark = !this.$vuetify.theme.dark;
-      localStorage.setItem('dark_theme', this.$vuetify.theme.dark.toString());
+      localStorage.setItem("dark_theme", this.$vuetify.theme.dark.toString());
     },
   },
 };

@@ -1,13 +1,14 @@
-import cheerio from 'cheerio';
-import fetch from 'node-fetch';
-import fs from 'fs';
+import cheerio from "cheerio";
+import fetch from "node-fetch";
+import fs from "fs";
 
 //Create a JSON file with all the sounds from the table of the website https://minecraft.fandom.com/wiki/Sounds.json
-async function fetchSounds() {
+
+module.export = async () => {
   let SoundObject = {};
 
   const data = await fetch(
-    'https://minecraft.fandom.com/wiki/Sounds.json/Java_Edition_values'
+    "https://minecraft.fandom.com/wiki/Sounds.json/Java_Edition_values"
   )
     .then((res) => res.text())
     .then((data) => {
@@ -18,14 +19,14 @@ async function fetchSounds() {
 
   let html = cheerio.load(data);
 
-  let table = html('table.wikitable')[0].children[1].children;
+  let table = html("table.wikitable")[0].children[1].children;
 
   table.forEach((row) => {
-    if (row.name === 'tr') {
+    if (row.name === "tr") {
       let SoundName = null,
         SubData = null;
 
-      const columns = row.children.filter((column) => column.name === 'td');
+      const columns = row.children.filter((column) => column.name === "td");
 
       SoundName = columns[0] ? columns[0].children[0].data : null;
 
@@ -42,14 +43,14 @@ async function fetchSounds() {
 
       if (columns[1]) {
         const usedData = columns[1].children.filter(
-          (column) => column.name !== 'br'
+          (column) => column.name !== "br"
         );
 
         usedData.forEach((row) => {
           /**
            * @type {String}
            */
-          let line = row.data.split(','),
+          let line = row.data.split(","),
             LineObject = {},
             path = null,
             pitch = null,
@@ -65,32 +66,32 @@ async function fetchSounds() {
           LineObject.name = path;
 
           line.forEach((data) => {
-            if (data.includes('pitch')) {
-              pitch = Number(data.split(' = ')[1]);
+            if (data.includes("pitch")) {
+              pitch = Number(data.split(" = ")[1]);
               LineObject.pitch = pitch;
             }
-            if (data.includes('volume')) {
-              volume = Number(data.split(' = ')[1]);
+            if (data.includes("volume")) {
+              volume = Number(data.split(" = ")[1]);
               LineObject.volume = volume;
             }
-            if (data.includes('weight')) {
-              weight = Number(data.split(' = ')[1]);
+            if (data.includes("weight")) {
+              weight = Number(data.split(" = ")[1]);
               LineObject.weight = weight;
             }
-            if (data.includes('stream')) {
-              stream = data.split(' = ')[1] === 'true';
+            if (data.includes("stream")) {
+              stream = data.split(" = ")[1] === "true";
               LineObject.stream = stream;
             }
-            if (data.includes('attenuation_distance')) {
-              attenuation_distance = Number(data.split(' = ')[1]);
+            if (data.includes("attenuation_distance")) {
+              attenuation_distance = Number(data.split(" = ")[1]);
               LineObject.attenuation_distance = attenuation_distance;
             }
-            if (data.includes('preload')) {
-              preload = data.split(' = ')[1] === 'true';
+            if (data.includes("preload")) {
+              preload = data.split(" = ")[1] === "true";
               LineObject.preload = preload;
             }
-            if (data.includes('type')) {
-              type = data.split(' = ')[1];
+            if (data.includes("type")) {
+              type = data.split(" = ")[1];
               LineObject.type = type;
             }
           });
@@ -105,11 +106,13 @@ async function fetchSounds() {
 
   SoundObject = JSON.stringify(SoundObject);
 
-  fs.writeFile('./src/utils/DefaultSounds.json', SoundObject, function (err) {
-    if (err) {
-      console.log(err);
+  fs.writeFile(
+    `${process.cwd()}/src/utils/DefaultSounds.json`,
+    SoundObject,
+    function (err) {
+      if (err) {
+        console.log(err);
+      }
     }
-  });
-}
-
-fetchSounds();
+  );
+};

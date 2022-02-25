@@ -50,7 +50,7 @@
 
 <script>
 export default {
-  name: 'Home',
+  name: "Home",
   data: () => {
     return {
       isSelecting: false,
@@ -63,7 +63,7 @@ export default {
 
       // After obtaining the focus when closing the FilePicker, return the button state to normal
       window.addEventListener(
-        'focus',
+        "focus",
         () => {
           this.isSelecting = false;
         },
