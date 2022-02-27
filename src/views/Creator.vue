@@ -1,7 +1,7 @@
 <!-- https://minecraft.fandom.com/wiki/Sounds.json -->
 <template>
   <div>
-    <PageLoader v-if="isLoaded" />
+    <PageLoader v-if="!isLoaded" />
 
     <v-container>
       <v-lazy>
@@ -28,15 +28,7 @@ export default {
   }),
 
   mounted: () => {
-    (function (d) {
-      d.addEventListener("DOMContentLoaded", function () {
-        var s = d.createElement("script");
-        s.setAttribute("type", "text/javascript");
-        s.setAttribute("src", "../utils/DefaultSounds.json");
-        s.setAttribute("defer", true);
-        d.head.appendChild(s);
-      });
-    })(document);
+    this.isloaded = true;
   },
 
   components: {

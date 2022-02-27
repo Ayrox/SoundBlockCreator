@@ -34,15 +34,15 @@ $colors: #8cc271, #69beeb, #f5aa39, #e9643b;
   position: fixed;
   top: 0;
   left: 0;
-  width: 100vw;
-  height: 100vh;
-  background-color: #333;
-  z-index: 999;
+  width: 100%;
+  height: 100%;
+  //background-color: #333;
+  //z-index: 999;
 }
 // -----------------------------------------------------
 .cube {
-  width: 40px;
-  height: 40px;
+  width: 10px;
+  height: 10px;
   margin-right: 10px;
   @for $i from 1 through length($colors) {
     &:nth-child(#{$i}) {

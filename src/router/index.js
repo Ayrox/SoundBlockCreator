@@ -1,9 +1,9 @@
 import Vue from "vue";
 import VueRouter from "vue-router";
 
-import Home from "../views/Home.vue";
-import About from "../views/About.vue";
-import Creator from "../views/Creator.vue";
+function lazyLoad(view) {
+  return () => import(`@/views/${view}.vue`);
+}
 
 Vue.use(VueRouter);
 
@@ -11,17 +11,17 @@ const routes = [
   {
     path: "/",
     name: "Home",
-    component: Home,
+    component: lazyLoad("Home"),
   },
   {
     path: "/about",
     name: "About",
-    component: About,
+    component: lazyLoad("About"),
   },
   {
     path: "/creator",
     name: "Creator",
-    component: Creator,
+    component: lazyLoad("Creator"),
   },
 ];
 
