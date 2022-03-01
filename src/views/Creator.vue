@@ -15,19 +15,41 @@
     <v-lazy>
       <div>
         <v-container v-for="(type, t) in searchType" :key="t" fluid>
-          <v-subheader>{{
-            type.name.toUpperCase().replace(["_"], " ")
-          }}</v-subheader>
+          <v-subheader>
+            {{ type.name.toUpperCase().replace(["_"], " ") }}
+          </v-subheader>
           <v-expansion-panels>
             <v-expansion-panel v-for="(object, o) in type.objects" :key="o">
               <v-expansion-panel-header>
-                {{ object.name.toUpperCase().replace(["_"], " ") }}
+                <v-avatar
+                  class="mr-6"
+                  rounded="100%"
+                  max-width="50"
+                  max-height="100%"
+                >
+                  <v-img
+                    :src="`../assets/img/minecraft/${type.name.toLowerCase()}/${object.name
+                      .toLowerCase()
+                      .replace(' ', '_')}.png`"
+                  />
+                </v-avatar>
+                {{ object.name.toUpperCase().replace("_", " ") }}
               </v-expansion-panel-header>
-              <v-expansion-panel-content
-                v-for="(action, a) in object.actions"
-                :key="a"
-              >
-                <Card :action="action" />
+              <v-expansion-panel-content>
+                <v-container fluid grid-list-xl>
+                  <v-layout justify-space-around wrap>
+                    <v-flex
+                      xs12
+                      sm6
+                      md4
+                      lg2
+                      v-for="(action, a) in object.actions"
+                      :key="a"
+                    >
+                      <Card :type="type" :object="object" :action="action" />
+                    </v-flex>
+                  </v-layout>
+                </v-container>
               </v-expansion-panel-content>
             </v-expansion-panel>
           </v-expansion-panels>
@@ -85,6 +107,7 @@ function getInfo() {
       name: action,
     });
   });
+  String.prototype.repl;
   return types;
 }
 
@@ -135,4 +158,8 @@ export default {
 };
 </script>
 
-<style></style>
+<style lang="scss" scoped>
+v-expanison-panel-header {
+  font-size: 1.2rem;
+}
+</style>

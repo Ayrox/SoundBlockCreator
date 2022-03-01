@@ -22,6 +22,7 @@ export default new Vuetify({
         primary: colors.blue.darken4,
         background: colors.indigo.base,
         info: colors.teal.lighten1,
+        items: "#1e1e1e",
       },
     },
   },
