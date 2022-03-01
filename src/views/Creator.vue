@@ -16,11 +16,11 @@
       <div>
         <v-container v-for="(type, t) in searchType" :key="t" fluid>
           <v-subheader>
-            {{ type.name.toUpperCase().replace(["_"], " ") }}
+            {{ type.name.toUpperCase().replaceAll("_", " ") }}
           </v-subheader>
           <v-expansion-panels>
             <v-expansion-panel v-for="(object, o) in type.objects" :key="o">
-              <v-expansion-panel-header>
+              <v-expansion-panel-header class="text-h5 font-weight-bold">
                 <v-avatar
                   class="mr-6"
                   rounded="100%"
@@ -30,10 +30,10 @@
                   <v-img
                     :src="`../assets/img/minecraft/${type.name.toLowerCase()}/${object.name
                       .toLowerCase()
-                      .replace(' ', '_')}.png`"
+                      .replaceAll(' ', '_')}.png`"
                   />
                 </v-avatar>
-                {{ object.name.toUpperCase().replace("_", " ") }}
+                {{ object.name.toUpperCase().replaceAll("_", " ") }}
               </v-expansion-panel-header>
               <v-expansion-panel-content>
                 <v-container fluid grid-list-xl>
@@ -160,6 +160,6 @@ export default {
 
 <style lang="scss" scoped>
 v-expanison-panel-header {
-  font-size: 1.2rem;
+  font-size: 1.5rem;
 }
 </style>

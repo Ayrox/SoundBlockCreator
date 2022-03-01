@@ -6,16 +6,26 @@
         <v-img width="100%" src="../assets/img/actions/loop.svg" />
       </v-avatar>
     </v-img>
-    <v-card-title height="30%">
-      <v-card-title-text class="display-1">
-        {{ action.name }}
-      </v-card-title-text>
+    <v-card-title class="fit text-center">
+      {{ toCapitalize(action.name.replaceAll("_", " ").replaceAll(".", " ")) }}
     </v-card-title>
   </v-card>
 </template>
 
 <script>
+import { toCapitalize } from "../utils/functions";
+import fitty from "fitty";
+
 export default {
+  methods: {
+    toCapitalize,
+  },
+  mounted: () => {
+    fitty(".fit", {
+      minSize: 0,
+      maxSize: 24,
+    });
+  },
   props: {
     type: {
       type: Object,
@@ -34,11 +44,8 @@ export default {
 </script>
 
 <style scoped>
-v-card-title-text {
-}
-
-v-card-title {
-  color: black;
-  font-size: 100%;
+.fit {
+  justify-content: center;
+  align-items: center;
 }
 </style>

@@ -17,6 +17,7 @@
     "buffer": "^6.0.3",
     "cheerio": "^1.0.0-rc.10",
     "core-js": "^3.6.5",
+    "fitty": "^2.3.6",
     "http": "^0.0.1-security",
     "https": "^1.0.0",
     "net": "^1.0.2",
