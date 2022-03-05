@@ -32,7 +32,7 @@
             />
           </template>
           <span>
-            {{ act /*.replaceAll("_", " ").replaceAll(".", " ")*/ }}
+            {{ toCapitalize(act.replaceAll("_", " ").replaceAll(".", " ")) }}
           </span>
         </v-tooltip>
       </v-avatar>
