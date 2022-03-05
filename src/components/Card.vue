@@ -32,7 +32,7 @@
             />
           </template>
           <span>
-            {{ toCapitalize(act.replaceAll("_", " ").replaceAll(".", " ")) }}
+            {{ act /*.replaceAll("_", " ").replaceAll(".", " ")*/ }}
           </span>
         </v-tooltip>
       </v-avatar>
@@ -58,7 +58,6 @@ export default {
     toCapitalize,
     getImg: (action) => {
       try {
-        console.log(action);
         return require(`../assets/img/actions/${action.toLowerCase()}.svg`);
       } catch (e) {
         return;
