@@ -1,4 +1,8 @@
 module.exports = {
+  /**
+   *
+   * @param {String} str
+   */
   toCapitalize: function (str) {
     let strTable = str.replaceAll("_", " ").replaceAll(".", " ").split(" ");
     for (var i = 0; i < strTable.length; i++) {

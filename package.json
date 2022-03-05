@@ -10,7 +10,7 @@
     "electron:serve": "vue-cli-service electron:serve",
     "postinstall": "electron-builder install-app-deps",
     "postuninstall": "electron-builder install-app-deps",
-    "deploy": "deploy.bat"
+    "deploy": "node scripts/gh-pages-deploy.js"
   },
   "main": "background.js",
   "dependencies": {
@@ -32,6 +32,7 @@
     "zlib": "^1.0.5"
   },
   "devDependencies": {
+    "execa": "latest",
     "@vue/cli-plugin-babel": "~4.5.0",
     "@vue/cli-plugin-eslint": "~4.5.0",
     "@vue/cli-plugin-router": "~4.5.0",
