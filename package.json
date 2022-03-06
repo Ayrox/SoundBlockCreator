@@ -10,7 +10,8 @@
     "electron:serve": "vue-cli-service electron:serve",
     "postinstall": "electron-builder install-app-deps",
     "postuninstall": "electron-builder install-app-deps",
-    "deploy": "node scripts/gh-pages-deploy.js"
+    "deploy-win": "node scripts/gh-pages-deploy.js",
+    "deploy-sh": "sh scripts/gh-pages-deploy.sh"
   },
   "main": "background.js",
   "dependencies": {
