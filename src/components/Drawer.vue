@@ -44,9 +44,21 @@ export default {
   data: () => {
     return {
       items: [
-        { title: "Dashboard", icon: "mdi-view-dashboard", href: "/" },
-        { title: "Creator", icon: "mdi-briefcase", href: "/creator" },
-        { title: "About", icon: "mdi-help-box", href: "/about" },
+        {
+          title: "Dashboard",
+          icon: "mdi-view-dashboard",
+          href: "/SoundBlockCreator/",
+        },
+        {
+          title: "Creator",
+          icon: "mdi-briefcase",
+          href: "/SoundBlockCreator/creator",
+        },
+        {
+          title: "About",
+          icon: "mdi-help-box",
+          href: "/SoundBlockCreator/about",
+        },
       ],
       drawer: true,
       mini: true,
