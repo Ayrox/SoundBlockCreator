@@ -21,24 +21,24 @@ const routes = [
     redirect: { name: "Creator" },
   },
   {
-    path: "/SoundBlockCreator/",
+    path: "/",
     name: "Home",
     component: lazyLoad("Home"),
   },
   {
-    path: "/SoundBlockCreator/about",
+    path: "/about",
     name: "About",
     component: lazyLoad("About"),
   },
   {
-    path: "/SoundBlockCreator/creator",
+    path: "/creator",
     name: "Creator",
     component: lazyLoad("Creator"),
   },
 ];
 
 const router = new VueRouter({
-  mode: "history",
+  mode: process.env.IS_ELECTRON ? "hash" : "history",
   base: "/SoundBlockCreator/",
   routes,
 });
