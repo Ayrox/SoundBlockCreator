@@ -10,28 +10,16 @@ Vue.use(VueRouter);
 const routes = [
   {
     path: "/",
-    redirect: { name: "Home" },
-  },
-  {
-    path: "/about",
-    redirect: { name: "About" },
-  },
-  {
-    path: "/creator",
-    redirect: { name: "Creator" },
-  },
-  {
-    path: "/SoundBlockCreator/",
     name: "Home",
     component: lazyLoad("Home"),
   },
   {
-    path: "/SoundBlockCreator/about",
+    path: "/about",
     name: "About",
     component: lazyLoad("About"),
   },
   {
-    path: "/SoundBlockCreator/creator",
+    path: "/creator",
     name: "Creator",
     component: lazyLoad("Creator"),
   },
