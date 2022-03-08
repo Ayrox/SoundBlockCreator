@@ -21,6 +21,20 @@ export default {
       }
     };
   },
+  updated() {
+    document.onreadystatechange = () => {
+      if (document.readyState == "complete") {
+        this.isloaded = true;
+      }
+    };
+  },
+  beforeUpdate() {
+    document.onreadystatechange = () => {
+      if (document.readyState == "complete") {
+        this.isloaded = true;
+      }
+    };
+  },
 };
 </script>
 

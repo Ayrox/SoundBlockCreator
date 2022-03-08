@@ -25,7 +25,7 @@ export default new Vuetify({
         secondary: colors.blue.darken4,
         background: colors.indigo.base,
         info: colors.teal.lighten1,
-        card: colors.blueGrey.darken1,
+        card: colors.blueGrey.darken3,
         card_img: colors.blueGrey.darken5,
         items: "#1e1e1e",
       },

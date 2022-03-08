@@ -10,11 +10,7 @@
     color="card"
     elevation="6"
   >
-    <v-img
-      height="70%"
-      class="bck-color"
-      src="../assets/img/minecraft/ambient/basalt_deltas.png"
-    >
+    <v-img height="70%" :src="getImg(type, object)" class="blue-grey darken-4">
       <v-avatar
         width="10px"
         rounded="100%"
@@ -28,7 +24,7 @@
               max-height="80%"
               class="svg"
               content-class="inside-svg"
-              :src="getImg(act)"
+              :src="getIcon(act)"
               v-bind="attrs"
               v-on="on"
             />
@@ -58,9 +54,20 @@ export default {
   },
   methods: {
     toCapitalize,
-    getImg: (action) => {
+    getIcon: (action) => {
       try {
         return require(`../assets/img/actions/${action.toLowerCase()}.svg`);
+      } catch (e) {
+        return;
+      }
+    },
+    getImg: (type, object) => {
+      try {
+        return require(`../assets/img/minecraft/${type.name
+          .toLowerCase()
+          .replaceAll(" ", "_")}/${object.name
+          .toLowerCase()
+          .replaceAll(" ", "_")}.png`);
       } catch (e) {
         return;
       }
