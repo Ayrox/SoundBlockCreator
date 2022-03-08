@@ -4,6 +4,8 @@
     class=""
     width="192"
     height="192"
+    min-height="192"
+    min-width="192"
     rounded="xl"
     color="card"
     elevation="6"

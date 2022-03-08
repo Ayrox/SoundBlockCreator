@@ -36,9 +36,10 @@
                   <v-layout justify-space-around wrap>
                     <v-flex
                       xs12
-                      sm6
+                      sm7
                       md4
-                      lg2
+                      lg3
+                      xl2
                       v-for="(action, a) in object.actions"
                       :key="a"
                     >
