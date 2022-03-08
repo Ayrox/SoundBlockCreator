@@ -42,17 +42,17 @@ export default {
         {
           title: "Dashboard",
           icon: "mdi-view-dashboard",
-          href: "/SoundBlockCreator/",
+          href: "/",
         },
         {
           title: "Creator",
           icon: "mdi-briefcase",
-          href: "/SoundBlockCreator/creator",
+          href: "/creator",
         },
         {
           title: "About",
           icon: "mdi-help-box",
-          href: "/SoundBlockCreator/about",
+          href: "/about",
         },
       ],
       drawer: true,

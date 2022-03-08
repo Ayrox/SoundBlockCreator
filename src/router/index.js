@@ -9,17 +9,18 @@ Vue.use(VueRouter);
 
 const routes = [
   {
-    path: "/SoundBlockCreator/",
+    path: "/",
     name: "Home",
     component: lazyLoad("Home"),
+    default: true,
   },
   {
-    path: "/SoundBlockCreator/about",
+    path: "/about",
     name: "About",
     component: lazyLoad("About"),
   },
   {
-    path: "/SoundBlockCreator/creator",
+    path: "/creator",
     name: "Creator",
     component: lazyLoad("Creator"),
   },
