@@ -1,7 +1,7 @@
 /* eslint-disable no-unused-vars */ /* eslint-disable prettier/prettier */
 <!-- https://minecraft.fandom.com/wiki/Sounds.json -->
 <template>
-  <div class="page">
+  <div>
     <PageLoader v-if="!isloaded" />
     <v-text-field
       v-model="search"
@@ -14,7 +14,7 @@
     />
     <v-lazy>
       <div>
-        <v-container v-for="(type, t) in searchType" :key="t" fluid>
+        <v-container v-for="(type, t) in searchType" :key="t">
           <v-subheader>
             {{ type.name.toUpperCase().replaceAll("_", " ") }}
           </v-subheader>
