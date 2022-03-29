@@ -12,12 +12,18 @@
 <script>
 import Drawer from "./components/Drawer.vue";
 import Header from "./components/Header.vue";
+//const fetchImg = require("./utils/fetchImg.js");
+const fetchSounds = require("./utils/fetchSounds.js");
 
 export default {
   name: "App",
   components: {
     Drawer,
     Header,
+  },
+  onCreated() {
+    //fetchImg();
+    fetchSounds();
   },
   mounted() {
     const theme = localStorage.getItem("dark_theme");
