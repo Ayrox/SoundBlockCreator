@@ -1,20 +1,6 @@
 const default_sounds = require("./DefaultSounds.json");
-const fs = require("fs");
-const client = require("https");
 
 module.exports = {
-  /**
-   *
-   * @param {String} url
-   * @param {String} filepath
-   * @returns {Promise}
-   */
-  downloadImage(url, filepath) {
-    client.get(url, (res) => {
-      res.pipe(fs.createWriteStream(filepath));
-    });
-  },
-
   /**
    *
    * @param {String} str
@@ -30,7 +16,7 @@ module.exports = {
    *
    * @returns {Array}
    */
-  getInfo() {
+  getInfo: function () {
     var types = [];
 
     Object.keys(default_sounds).forEach((sound) => {

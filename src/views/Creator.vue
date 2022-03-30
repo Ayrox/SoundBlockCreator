@@ -57,9 +57,10 @@
 </template>
 
 <script>
-import default_sounds from "../utils/DefaultSounds.json";
+//import default_sounds from "../utils/DefaultSounds.json";
 import PageLoader from "../components/PageLoader.vue";
 import Card from "../components/Card.vue";
+import { getInfo } from "../utils/functions";
 
 export default {
   data: () => ({
@@ -142,53 +143,6 @@ export default {
     },
   },
 };
-
-function getInfo() {
-  var types = [];
-
-  Object.keys(default_sounds).forEach((sound) => {
-    let sound_splitted = sound.split(".");
-    var i = 0;
-    var action = sound_splitted[2] || "default";
-
-    for (let snd of sound_splitted) {
-      if (i > 2) {
-        action += "." + snd;
-      }
-      i++;
-    }
-    let name, object;
-
-    name = types.filter((type) => type.name == sound_splitted[0])[0];
-    if (!name) {
-      types.push({
-        name: sound_splitted[0],
-        objects: [],
-      });
-      name = types.filter((type) => type.name == sound_splitted[0])[0];
-    }
-
-    object = name.objects.filter(
-      (object) => object.name == sound_splitted[1]
-    )[0];
-
-    if (!object) {
-      name.objects.push({
-        name: sound_splitted[1],
-        actions: [],
-      });
-      object = name.objects.filter(
-        (object) => object.name == sound_splitted[1]
-      )[0];
-    }
-
-    object.actions.push({
-      name: action,
-    });
-  });
-  String.prototype.repl;
-  return types;
-}
 </script>
 
 <style lang="scss" scoped>

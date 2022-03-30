@@ -1,47 +1,59 @@
 /* eslint-disable prettier/prettier */
 <template>
-  <v-card
-    class=""
-    width="192"
-    height="192"
-    min-height="192"
-    min-width="192"
-    rounded="xl"
-    color="card"
-    elevation="6"
-  >
-    <v-img height="70%" :src="getImg(type, object)" class="blue-grey darken-4">
-      <v-avatar
-        width="10px"
-        rounded="100%"
-        v-for="act in this.actionList"
-        :key="act"
+  <v-hover>
+    <v-card
+      width="192"
+      height="192"
+      min-height="192"
+      min-width="192"
+      rounded="xl"
+      color="card"
+      elevation="4"
+    >
+      <v-img
+        height="70%"
+        :src="getImg(type, object)"
+        class="blue-grey darken-4"
       >
-        <v-tooltip top>
-          <template v-slot:activator="{ on, attrs }">
-            <v-img
-              max-width="80%"
-              max-height="80%"
-              class="svg"
-              content-class="inside-svg"
-              :src="getIcon(act)"
-              v-bind="attrs"
-              v-on="on"
-            />
-          </template>
-          <span>
-            {{ toCapitalize(act.replaceAll("_", " ").replaceAll(".", " ")) }}
-          </span>
-        </v-tooltip>
-      </v-avatar>
-    </v-img>
-    <v-card-title class="fit text-center">
-      {{ toCapitalize(action.name.replaceAll("_", " ").replaceAll(".", " ")) }}
-    </v-card-title>
-  </v-card>
+        <v-avatar
+          width="10px"
+          rounded="100%"
+          v-for="act in this.actionList"
+          :key="act"
+        >
+          <v-tooltip top>
+            <template v-slot:activator="{ on, attrs }">
+              <v-img
+                max-width="80%"
+                max-height="80%"
+                class="svg"
+                content-class="inside-svg"
+                :src="getIcon(act)"
+                v-bind="attrs"
+                v-on="on"
+              />
+            </template>
+            <span>
+              {{ toCapitalize(act.replaceAll("_", " ").replaceAll(".", " ")) }}
+            </span>
+          </v-tooltip>
+        </v-avatar>
+      </v-img>
+      <v-card-title
+        class="fit text-center pt-6"
+        style="width: 100%; position: relative"
+      >
+        {{
+          toCapitalize(action.name.replaceAll("_", " ").replaceAll(".", " "))
+        }}
+        <SoundDialog :type="type" :object="object" :action="action" />
+      </v-card-title>
+    </v-card>
+  </v-hover>
 </template>
 
 <script>
+import SoundDialog from "../components/SoundDialog";
 import { toCapitalize } from "../utils/functions";
 import fitty from "fitty";
 
@@ -51,6 +63,9 @@ export default {
       actionList: this.action.name.split("."),
       completName: this.action.name,
     };
+  },
+  components: {
+    SoundDialog,
   },
   methods: {
     toCapitalize,
