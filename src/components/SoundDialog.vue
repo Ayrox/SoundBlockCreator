@@ -17,9 +17,35 @@
     <template v-slot:default="dialog">
       <v-card>
         <v-card-title>{{ action.name }}</v-card-title>
-        <v-card-text>
-          <v-checkbox :value="replace" label="Replace"></v-checkbox>
+        <v-card-text class="d-flex flex-row">
+          <v-checkbox
+            :value="replace"
+            label="Replace"
+            v-bind="attrs"
+            v-on="on"
+          />
+          <v-tooltip right>
+            <template v-slot:activator="{ on, attrs }">
+              <v-icon dark v-bind="attrs" v-on="on" class="ma-2">
+                mdi-help-circle
+              </v-icon>
+            </template>
+            <span>
+              <strong>Replace :</strong>
+              <br />
+              Used only in resource packs. True if the sounds listed in sounds
+              <br />
+              should replace the sounds listed in the default sounds.json for
+              <br />
+              this sound event. False if the sounds listed should be added to
+              <br />
+              the list of default sounds. Optional. If undefined, defaults to
+              <br />
+              "false".
+            </span>
+          </v-tooltip>
         </v-card-text>
+
         <v-expansion-panels>
           <v-expansion-panel v-for="sound in sounds" :key="sound">
             <v-expansion-panel-header class="font-weight-bold">
