@@ -1,5 +1,5 @@
 <template>
-  <div class="page-loader" v-if="!isloaded">
+  <div class="page-loader" v-show="!isloaded">
     <div class="cube"></div>
     <div class="cube"></div>
     <div class="cube"></div>
@@ -9,31 +9,11 @@
 
 <script>
 export default {
-  data: () => {
-    return {
-      isloaded: false,
-    };
-  },
-  mounted() {
-    document.onreadystatechange = () => {
-      if (document.readyState == "complete") {
-        this.isloaded = true;
-      }
-    };
-  },
-  updated() {
-    document.onreadystatechange = () => {
-      if (document.readyState == "complete") {
-        this.isloaded = true;
-      }
-    };
-  },
-  beforeUpdate() {
-    document.onreadystatechange = () => {
-      if (document.readyState == "complete") {
-        this.isloaded = true;
-      }
-    };
+  props: {
+    isloaded: {
+      type: Boolean,
+      required: true,
+    },
   },
 };
 </script>
