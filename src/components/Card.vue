@@ -78,7 +78,6 @@ export default {
     },
     getImg: (type, object) => {
       try {
-        console.log(object.name);
         return require(`../assets/img/minecraft/${type.name
           .toLowerCase()
           .replaceAll(" ", "_")}/${object.name
