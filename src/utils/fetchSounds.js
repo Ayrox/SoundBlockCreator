@@ -1,7 +1,6 @@
-import cheerio from "cheerio";
-import fetch from "node-fetch";
-import fs from "fs";
-
+const cheerio = require("cheerio");
+const fetch = require("node-fetch");
+const fs = require("fs");
 //Create a JSON file with all the sounds from the table of the website https://minecraft.fandom.com/wiki/Sounds.json
 
 module.export = async () => {
