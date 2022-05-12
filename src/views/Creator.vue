@@ -17,7 +17,7 @@
         <v-subheader>
           {{ type.name.toUpperCase().replaceAll("_", " ") }}
         </v-subheader>
-        <v-expansion-panels>
+        <v-expansion-panels inset>
           <v-expansion-panel v-for="(object, o) in type.objects" :key="o">
             <v-expansion-panel-header class="text-h5 font-weight-bold">
               <v-avatar

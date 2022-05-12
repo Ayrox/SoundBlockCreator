@@ -21,15 +21,18 @@
     <v-divider v-if="!mini"></v-divider>
 
     <v-list>
-      <v-list-item v-for="item in items" :key="item.title" :to="item.href" link>
+      <v-list-item to="/SoundBlockCreator/" link>
         <v-list-item-icon>
-          <v-icon>{{ item.icon }}</v-icon>
+          <v-icon> mdi-view-dashboard </v-icon>
         </v-list-item-icon>
 
         <v-list-item-content>
-          <v-list-item-title>{{ item.title }}</v-list-item-title>
+          <v-list-item-title> Dashboard </v-list-item-title>
         </v-list-item-content>
       </v-list-item>
+      <v-expansion-panel>
+        <v-expansion-panel-header> Creator </v-expansion-panel-header>
+      </v-expansion-panel>
     </v-list>
   </v-navigation-drawer>
 </template>
@@ -39,11 +42,6 @@ export default {
   data: () => {
     return {
       items: [
-        {
-          title: "Dashboard",
-          icon: "mdi-view-dashboard",
-          href: "/SoundBlockCreator/",
-        },
         {
           title: "Creator",
           icon: "mdi-briefcase",
