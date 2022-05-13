@@ -13,43 +13,45 @@
       label="Search"
     />
     <v-lazy>
-      <v-container v-for="(type, t) in searchType" :key="t">
-        <v-subheader>
-          {{ type.name.toUpperCase().replaceAll("_", " ") }}
-        </v-subheader>
-        <v-expansion-panels inset>
-          <v-expansion-panel v-for="(object, o) in type.objects" :key="o">
-            <v-expansion-panel-header class="text-h5 font-weight-bold">
-              <v-avatar
-                class="mr-6"
-                rounded="100%"
-                max-width="50"
-                max-height="100%"
-              >
-                <v-img :src="getImg(type, object)" v-bind="object" />
-              </v-avatar>
-              {{ object.name.toUpperCase().replaceAll("_", " ") }}
-            </v-expansion-panel-header>
-            <v-expansion-panel-content>
-              <v-container fluid grid-list-xl>
-                <v-layout justify-space-around wrap>
-                  <v-flex
-                    xs12
-                    sm7
-                    md4
-                    lg3
-                    xl2
-                    v-for="(action, a) in object.actions"
-                    :key="a"
-                  >
-                    <Card :type="type" :object="object" :action="action" />
-                  </v-flex>
-                </v-layout>
-              </v-container>
-            </v-expansion-panel-content>
-          </v-expansion-panel>
-        </v-expansion-panels>
-      </v-container>
+      <div>
+        <v-container v-for="(type, t) in searchType" :key="t">
+          <v-subheader>
+            {{ type.name.toUpperCase().replaceAll("_", " ") }}
+          </v-subheader>
+          <v-expansion-panels inset>
+            <v-expansion-panel v-for="(object, o) in type.children" :key="o">
+              <v-expansion-panel-header class="text-h5 font-weight-bold">
+                <v-avatar
+                  class="mr-6"
+                  rounded="100%"
+                  max-width="50"
+                  max-height="100%"
+                >
+                  <v-img :src="getImg(type, object)" v-bind="object" />
+                </v-avatar>
+                {{ object.name.toUpperCase().replaceAll("_", " ") }}
+              </v-expansion-panel-header>
+              <v-expansion-panel-content>
+                <v-container fluid grid-list-xl>
+                  <v-layout justify-space-around wrap>
+                    <v-flex
+                      xs12
+                      sm7
+                      md4
+                      lg3
+                      xl2
+                      v-for="(action, a) in object.children"
+                      :key="a"
+                    >
+                      <Card :type="type" :object="object" :action="action" />
+                    </v-flex>
+                  </v-layout>
+                </v-container>
+              </v-expansion-panel-content>
+            </v-expansion-panel>
+          </v-expansion-panels>
+        </v-container>
+      </div>
     </v-lazy>
   </div>
 </template>

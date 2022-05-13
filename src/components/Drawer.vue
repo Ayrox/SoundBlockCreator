@@ -30,31 +30,34 @@
           <v-list-item-title> Dashboard </v-list-item-title>
         </v-list-item-content>
       </v-list-item>
-      <v-expansion-panel>
-        <v-expansion-panel-header> Creator </v-expansion-panel-header>
-      </v-expansion-panel>
+      <v-list-group prepend-icon="mdi-briefcase">
+        <template v-slot:activator>
+          <v-list-item-title> Creator </v-list-item-title>
+        </template>
+
+        <v-treeview :items="info" hoverable activatable open-all></v-treeview>
+      </v-list-group>
+      <v-list-item to="/SoundBlockCreator/about" link>
+        <v-list-item-icon>
+          <v-icon> mdi-help-box </v-icon>
+        </v-list-item-icon>
+
+        <v-list-item-content>
+          <v-list-item-title> About </v-list-item-title>
+        </v-list-item-content>
+      </v-list-item>
     </v-list>
   </v-navigation-drawer>
 </template>
 
 <script>
+import { getInfo } from "../utils/functions";
 export default {
   data: () => {
     return {
-      items: [
-        {
-          title: "Creator",
-          icon: "mdi-briefcase",
-          href: "/SoundBlockCreator/creator",
-        },
-        {
-          title: "About",
-          icon: "mdi-help-box",
-          href: "/SoundBlockCreator/about",
-        },
-      ],
       drawer: true,
       mini: true,
+      info: getInfo(),
     };
   },
   methods: {

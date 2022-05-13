@@ -18,7 +18,7 @@ module.exports = {
    */
   getInfo: function () {
     var types = [];
-
+    let id = 0;
     Object.keys(default_sounds).forEach((sound) => {
       let sound_splitted = sound.split(".");
       var i = 0;
@@ -35,31 +35,38 @@ module.exports = {
       name = types.filter((type) => type.name == sound_splitted[0])[0];
       if (!name) {
         types.push({
+          id: id,
           name: sound_splitted[0],
-          objects: [],
+          children: [],
         });
+        id++;
         name = types.filter((type) => type.name == sound_splitted[0])[0];
       }
 
-      object = name.objects.filter(
+      object = name.children.filter(
         (object) => object.name == sound_splitted[1]
       )[0];
 
       if (!object) {
-        name.objects.push({
+        name.children.push({
+          id: id,
           name: sound_splitted[1],
-          actions: [],
+          children: [],
         });
-        object = name.objects.filter(
+        id++;
+        object = name.children.filter(
           (object) => object.name == sound_splitted[1]
         )[0];
       }
 
-      object.actions.push({
+      object.children.push({
+        id: id,
         name: action,
       });
+      id++;
     });
     String.prototype.repl;
+    console.log(types);
     return types;
   },
 };
