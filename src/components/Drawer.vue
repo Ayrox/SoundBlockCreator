@@ -1,13 +1,7 @@
 <template>
-  <v-navigation-drawer
-    v-model="drawer"
-    :mini-variant.sync="mini"
-    app
-    color="primary"
-    permanent
-  >
+  <v-navigation-drawer app color="primary" permanent>
     <v-list-item class="px-2">
-      <v-list-item-avatar @click.stop="mini = !mini">
+      <v-list-item-avatar>
         <v-img :src="require('../assets/logo.svg')" />
       </v-list-item-avatar>
 
@@ -35,7 +29,12 @@
           <v-list-item-title> Creator </v-list-item-title>
         </template>
 
-        <v-treeview :items="info" hoverable activatable open-all></v-treeview>
+        <v-treeview
+          return-object
+          :items="info"
+          hoverable
+          activatable
+        ></v-treeview>
       </v-list-group>
       <v-list-item to="/SoundBlockCreator/about" link>
         <v-list-item-icon>
