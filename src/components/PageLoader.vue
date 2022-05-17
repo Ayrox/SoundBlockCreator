@@ -1,5 +1,5 @@
 <template>
-  <div class="page-loader" v-show="!isloaded">
+  <div class="page-loader">
     <div class="cube"></div>
     <div class="cube"></div>
     <div class="cube"></div>
@@ -8,14 +8,7 @@
 </template>
 
 <script>
-export default {
-  props: {
-    isloaded: {
-      type: Boolean,
-      required: true,
-    },
-  },
-};
+export default {};
 </script>
 
 <style lang="scss" scoped>

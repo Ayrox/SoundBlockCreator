@@ -1,5 +1,5 @@
 <template>
-  <v-navigation-drawer app color="primary" permanent>
+  <v-navigation-drawer app color="primary" stateless permanent>
     <v-list-item class="px-2">
       <v-list-item-avatar>
         <v-img :src="require('../assets/logo.svg')" />
@@ -24,18 +24,15 @@
           <v-list-item-title> Dashboard </v-list-item-title>
         </v-list-item-content>
       </v-list-item>
-      <v-list-group prepend-icon="mdi-briefcase">
-        <template v-slot:activator>
-          <v-list-item-title> Creator </v-list-item-title>
-        </template>
+      <v-list-item to="/SoundBlockCreator/creator" link>
+        <v-list-item-icon>
+          <v-icon> mdi-briefcase </v-icon>
+        </v-list-item-icon>
 
-        <v-treeview
-          return-object
-          :items="info"
-          hoverable
-          activatable
-        ></v-treeview>
-      </v-list-group>
+        <v-list-item-content>
+          <v-list-item-title> Creator </v-list-item-title>
+        </v-list-item-content>
+      </v-list-item>
       <v-list-item to="/SoundBlockCreator/about" link>
         <v-list-item-icon>
           <v-icon> mdi-help-box </v-icon>
@@ -55,6 +52,8 @@ export default {
   data: () => {
     return {
       drawer: true,
+      active: [],
+      open: [],
       mini: true,
       info: getInfo(),
     };
@@ -62,6 +61,15 @@ export default {
   methods: {
     toggleTheme() {
       this.$vuetify.theme.dark = !this.$vuetify.theme.dark;
+    },
+  },
+  computed: {
+    selected() {
+      if (!this.active.length) return undefined;
+
+      const id = this.active[0];
+      console.log(id);
+      return id;
     },
   },
 };

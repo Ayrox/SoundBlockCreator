@@ -2,7 +2,6 @@
 <!-- https://minecraft.fandom.com/wiki/Sounds.json -->
 <template>
   <div>
-    <PageLoader :isloaded="isloaded" />
     <v-text-field
       v-model="search"
       clearable
@@ -13,52 +12,45 @@
       label="Search"
     />
     <v-lazy>
-      <div>
-        <v-container v-for="(type, t) in searchType" :key="t">
-          <v-subheader>
-            {{ type.name.toUpperCase().replaceAll("_", " ") }}
-          </v-subheader>
-          <v-expansion-panels inset>
-            <v-expansion-panel v-for="(object, o) in type.children" :key="o">
-              <v-expansion-panel-header class="text-h5 font-weight-bold">
-                <v-avatar
-                  class="mr-6"
-                  rounded="100%"
-                  max-width="50"
-                  max-height="100%"
+      <v-list rounded>
+        <v-list-group
+          value="true"
+          eager
+          v-for="(type, t) in searchType"
+          :key="t"
+        >
+          <template v-slot:activator>
+            <v-list-item-content>
+              <v-list-item-title>
+                {{ type.name.toUpperCase().replaceAll("_", " ") }}
+              </v-list-item-title>
+            </v-list-item-content>
+          </template>
+          <v-item-group>
+            <v-container fluid grid-list-xl>
+              <v-layout justify-space-around wrap>
+                <v-flex
+                  xs12
+                  sm7
+                  md4
+                  lg3
+                  xl2
+                  v-for="(object, o) in type.children"
+                  :key="o"
                 >
-                  <v-img :src="getImg(type, object)" v-bind="object" />
-                </v-avatar>
-                {{ object.name.toUpperCase().replaceAll("_", " ") }}
-              </v-expansion-panel-header>
-              <v-expansion-panel-content>
-                <v-container fluid grid-list-xl>
-                  <v-layout justify-space-around wrap>
-                    <v-flex
-                      xs12
-                      sm7
-                      md4
-                      lg3
-                      xl2
-                      v-for="(action, a) in object.children"
-                      :key="a"
-                    >
-                      <Card :type="type" :object="object" :action="action" />
-                    </v-flex>
-                  </v-layout>
-                </v-container>
-              </v-expansion-panel-content>
-            </v-expansion-panel>
-          </v-expansion-panels>
-        </v-container>
-      </div>
+                  <Card :type="type" :object="object" />
+                </v-flex>
+              </v-layout>
+            </v-container>
+          </v-item-group>
+        </v-list-group>
+      </v-list>
     </v-lazy>
   </div>
 </template>
 
 <script>
 //import default_sounds from "../utils/DefaultSounds.json";
-import PageLoader from "../components/PageLoader.vue";
 import Card from "../components/Card.vue";
 import { getInfo } from "../utils/functions";
 
@@ -70,21 +62,7 @@ export default {
   }),
 
   components: {
-    PageLoader,
     Card,
-  },
-  methods: {
-    getImg: (type, object) => {
-      try {
-        return require(`../assets/img/minecraft/${type.name
-          .toLowerCase()
-          .replaceAll(" ", "_")}/${object.name
-          .toLowerCase()
-          .replaceAll(" ", "_")}.png`);
-      } catch (e) {
-        return;
-      }
-    },
   },
   computed: {
     searchType() {
@@ -93,25 +71,25 @@ export default {
         se = getInfo();
 
         se.map((type) => {
-          type.objects.map((object) => {
+          type.children.map((object) => {
             object.actions = object.actions.filter((action) =>
               action.name.toLowerCase().includes(this.search.toLowerCase())
             );
           });
-          type.objects = type.objects.filter(
+          type.children = type.children.filter(
             (object) =>
               object.name.toLowerCase().includes(this.search.toLowerCase()) ||
               object.actions.length > 0
           );
           if (
-            type.objects.filter(
+            type.children.filter(
               (object) =>
                 object.name.toLowerCase() === this.search.toLowerCase()
             ).length > 0
           ) {
-            type.objects =
+            type.children =
               getInfo().map((type) => {
-                return type.objects.filter(
+                return type.children.filter(
                   (object) =>
                     object.name.toLowerCase() === this.search.toLowerCase()
                 );
@@ -142,26 +120,30 @@ export default {
       return se;
     },
   },
+
   beforeMount() {
     console.log(this.isloaded);
   },
   mounted() {
-    this.$nextTick(function () {
-      this.isloaded = true;
-      console.log(this.isloaded);
-    });
+    this.isloaded = true;
+    console.log(this.isloaded);
   },
   updated() {
-    this.$nextTick(function () {
-      this.isloaded = true;
-      console.log(this.isloaded);
-    });
+    console.log(this.isloaded);
   },
 };
 </script>
 
 <style lang="scss" scoped>
-v-expanison-panel-header {
-  font-size: 1.5rem;
+.v-list-group__header {
+  background-color: #1e1e1e;
+  font-size: 1.2rem;
+  font-weight: bold;
+}
+.v-item-group {
+  background-color: #1e1e1e;
+}
+.v-lazy {
+  background-color: #1e1e1e;
 }
 </style>

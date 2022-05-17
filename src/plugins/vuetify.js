@@ -9,6 +9,7 @@ export default new Vuetify({
     iconfont: "mdi",
   },
   theme: {
+    options: { customProperties: true },
     themes: {
       light: {
         primary: colors.green,
@@ -21,10 +22,13 @@ export default new Vuetify({
         card_img: colors.lightGreen.lighten1,
       },
       dark: {
-        primary: colors.blue.darken4,
-        secondary: colors.blue.darken4,
-        background: colors.indigo.base,
-        info: colors.teal.lighten1,
+        primary: "#3f51b5",
+        secondary: "#2196f3",
+        accent: "#03a9f4",
+        error: "#f44336",
+        warning: "#ff9800",
+        info: "#00bcd4",
+        success: "#8bc34a",
         card: colors.blueGrey.darken3,
         card_img: colors.blueGrey.darken5,
         items: "#1e1e1e",

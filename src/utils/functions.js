@@ -36,6 +36,7 @@ module.exports = {
       if (!name) {
         types.push({
           id: id,
+          to: sound_splitted[0],
           name: sound_splitted[0],
           children: [],
         });
@@ -50,6 +51,7 @@ module.exports = {
       if (!object) {
         name.children.push({
           id: id,
+          to: name.name + sound_splitted[1],
           name: sound_splitted[1],
           children: [],
         });
@@ -61,6 +63,7 @@ module.exports = {
 
       object.children.push({
         id: id,
+        to: name.name + object.name + action,
         name: action,
       });
       id++;

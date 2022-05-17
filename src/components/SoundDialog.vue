@@ -93,6 +93,32 @@
   </v-dialog>
 </template>
 
+<!--
+  <v-avatar
+    width="10px"
+    rounded="100%"
+    v-for="act in this.actionList"
+    :key="act"
+  >
+    <v-tooltip top>
+      <template v-slot:activator="{ on, attrs }">
+        <v-img
+          max-width="80%"
+          max-height="80%"
+          class="svg"
+          content-class="inside-svg"
+          :src="getIcon(act)"
+          v-bind="attrs"
+          v-on="on"
+        />
+      </template>
+      <span>
+        {{ toCapitalize(act.replaceAll("_", " ").replaceAll(".", " ")) }}
+      </span>
+    </v-tooltip>
+  </v-avatar>
+-->
+
 <script>
 import default_sounds from "../utils/DefaultSounds.json";
 
@@ -115,10 +141,6 @@ export default {
       required: true,
     },
     object: {
-      type: Object,
-      required: true,
-    },
-    action: {
       type: Object,
       required: true,
     },
