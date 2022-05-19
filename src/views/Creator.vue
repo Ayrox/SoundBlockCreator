@@ -10,48 +10,16 @@
       hide-details
       prepend-inner-icon="mdi-magnify"
       label="Search"
+      class="ma-6 mr-12 ml-12"
     />
-    <v-lazy>
-      <v-list rounded>
-        <v-list-group
-          value="true"
-          eager
-          v-for="(type, t) in searchType"
-          :key="t"
-        >
-          <template v-slot:activator>
-            <v-list-item-content>
-              <v-list-item-title>
-                {{ type.name.toUpperCase().replaceAll("_", " ") }}
-              </v-list-item-title>
-            </v-list-item-content>
-          </template>
-          <v-item-group>
-            <v-container fluid grid-list-xl>
-              <v-layout justify-space-around wrap>
-                <v-flex
-                  xs12
-                  sm7
-                  md4
-                  lg3
-                  xl2
-                  v-for="(object, o) in type.children"
-                  :key="o"
-                >
-                  <Card :type="type" :object="object" />
-                </v-flex>
-              </v-layout>
-            </v-container>
-          </v-item-group>
-        </v-list-group>
-      </v-list>
-    </v-lazy>
+    <ContentCreator :search="searchType" />
   </div>
 </template>
 
 <script>
 //import default_sounds from "../utils/DefaultSounds.json";
-import Card from "../components/Card.vue";
+
+import ContentCreator from "../components/ContentCreator.vue";
 import { getInfo } from "../utils/functions";
 
 export default {
@@ -62,7 +30,7 @@ export default {
   }),
 
   components: {
-    Card,
+    ContentCreator,
   },
   computed: {
     searchType() {
@@ -71,15 +39,8 @@ export default {
         se = getInfo();
 
         se.map((type) => {
-          type.children.map((object) => {
-            object.actions = object.actions.filter((action) =>
-              action.name.toLowerCase().includes(this.search.toLowerCase())
-            );
-          });
-          type.children = type.children.filter(
-            (object) =>
-              object.name.toLowerCase().includes(this.search.toLowerCase()) ||
-              object.actions.length > 0
+          type.children = type.children.filter((object) =>
+            object.name.toLowerCase().includes(this.search.toLowerCase())
           );
           if (
             type.children.filter(
@@ -100,7 +61,7 @@ export default {
         se = se.filter(
           (type) =>
             type.name.toLowerCase().includes(this.search.toLowerCase()) ||
-            type.objects.length > 0
+            type.children.length > 0
         );
 
         //! Display the type with his objects if writed completely
@@ -114,36 +75,17 @@ export default {
           );
         }
       } else {
-        se = this.types;
+        se = getInfo();
       }
-      //console.log(se);
       return se;
     },
-  },
-
-  beforeMount() {
-    console.log(this.isloaded);
-  },
-  mounted() {
-    this.isloaded = true;
-    console.log(this.isloaded);
-  },
-  updated() {
-    console.log(this.isloaded);
   },
 };
 </script>
 
 <style lang="scss" scoped>
-.v-list-group__header {
-  background-color: #1e1e1e;
+.v-list-group {
   font-size: 1.2rem;
   font-weight: bold;
-}
-.v-item-group {
-  background-color: #1e1e1e;
-}
-.v-lazy {
-  background-color: #1e1e1e;
 }
 </style>

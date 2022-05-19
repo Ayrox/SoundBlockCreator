@@ -69,7 +69,6 @@ module.exports = {
       id++;
     });
     String.prototype.repl;
-    console.log(types);
     return types;
   },
 };

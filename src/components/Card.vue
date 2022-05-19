@@ -9,7 +9,6 @@
       rounded="xl"
       color="card"
       elevation="4"
-      :ripple="true"
     >
       <v-img
         eager
@@ -25,14 +24,14 @@
         {{
           toCapitalize(object.name.replaceAll("_", " ").replaceAll(".", " "))
         }}
-        <!-- <SoundDialog :type="type" :object="object" /> -->
+        <SoundDialog :type="type" :object="object" />
       </v-card-title>
     </v-card>
   </v-scale-transition>
 </template>
 
 <script>
-//import SoundDialog from "../components/SoundDialog";
+import SoundDialog from "../components/SoundDialog";
 import { toCapitalize } from "../utils/functions";
 import fitty from "fitty";
 
@@ -43,7 +42,7 @@ export default {
     };
   },
   components: {
-    //SoundDialog,
+    SoundDialog,
   },
   methods: {
     toCapitalize,
@@ -88,12 +87,8 @@ export default {
 <style lang="scss" scoped>
 .card {
   border: 2px solid;
-  border-color: var(--primary);
 }
-.svg {
-  filter: invert(100%) sepia(55%) saturate(1522%) hue-rotate(217deg)
-    brightness(109%) contrast(110%);
-}
+
 .fit {
   justify-content: center;
   align-items: center;

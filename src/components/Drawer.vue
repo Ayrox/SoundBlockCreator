@@ -14,7 +14,7 @@
 
     <v-divider v-if="!mini"></v-divider>
 
-    <v-list>
+    <v-list-item-group mandatory>
       <v-list-item to="/SoundBlockCreator/" link>
         <v-list-item-icon>
           <v-icon> mdi-view-dashboard </v-icon>
@@ -42,7 +42,7 @@
           <v-list-item-title> About </v-list-item-title>
         </v-list-item-content>
       </v-list-item>
-    </v-list>
+    </v-list-item-group>
   </v-navigation-drawer>
 </template>
 
